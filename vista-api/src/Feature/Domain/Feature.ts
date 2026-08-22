@@ -2,6 +2,7 @@ export class Feature {
   private _id: string;
   private _name: string;
   private _description: string;
+  private _icon: string | null;
   private _isActive: boolean;
   private _createdAt: Date;
 
@@ -9,12 +10,14 @@ export class Feature {
     id: string,
     name: string,
     description: string,
+    icon: string | null,
     isActive: boolean,
     createdAt: Date,
   ) {
     this._id = id;
     this._name = name;
     this._description = description;
+    this._icon = icon;
     this._isActive = isActive;
     this._createdAt = createdAt;
   }
@@ -37,6 +40,14 @@ export class Feature {
 
   set description(description: string) {
     this._description = description;
+  }
+
+  get icon(): string | null {
+    return this._icon;
+  }
+
+  set icon(icon: string | null) {
+    this._icon = icon;
   }
 
   get isActive(): boolean {

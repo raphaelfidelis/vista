@@ -7,6 +7,7 @@ export class FeatureMapper {
       model.id,
       model.name,
       model.description,
+      model.icon,
       model.isActive,
       model.createdAt,
     );

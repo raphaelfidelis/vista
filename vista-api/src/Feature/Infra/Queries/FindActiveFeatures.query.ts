@@ -21,6 +21,7 @@ export class TypeOrmFindActiveFeaturesQuery implements FindActiveFeaturesQuery {
         id: feature.id,
         name: feature.name,
         description: feature.description,
+        icon: feature.icon,
         isActive: feature.isActive,
         createdAt: feature.createdAt.toISOString(),
       };
