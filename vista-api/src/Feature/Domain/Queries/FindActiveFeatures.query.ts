@@ -4,6 +4,7 @@ export interface FeatureDto {
   id: string;
   name: string;
   description: string;
+  icon: string | null;
   isActive: boolean;
   createdAt: string;
 }
