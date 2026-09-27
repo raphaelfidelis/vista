@@ -1,5 +1,3 @@
-'use client';
-
 const MAX_AGE_SECONDS = 60 * 60 * 24 * 365;
 
 export function setPreference(name: string, value: string): void {

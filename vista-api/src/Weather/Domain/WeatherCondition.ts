@@ -1,0 +1,10 @@
+export enum WeatherCondition {
+  CLEAR = 'CLEAR',
+  PARTLY_CLOUDY = 'PARTLY_CLOUDY',
+  CLOUDY = 'CLOUDY',
+  FOG = 'FOG',
+  DRIZZLE = 'DRIZZLE',
+  RAIN = 'RAIN',
+  SNOW = 'SNOW',
+  THUNDERSTORM = 'THUNDERSTORM',
+}

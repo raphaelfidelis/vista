@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# vista-web
 
-## Getting Started
+Frontend do Vista. Next.js (App Router) + Tailwind.
 
-First, run the development server:
+## Rodando
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Sobe em [http://localhost:3001](http://localhost:3001) — a porta 3000 é do `vista-api`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Script | Uso |
+| --- | --- |
+| `dev` | Servidor de desenvolvimento |
+| `build` / `start` | Build e servidor de produção |
+| `lint` | ESLint com correção automática |
+| `format` | Prettier |
 
-## Learn More
+## Estrutura
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/
+    layout.tsx          fontes e estilos globais
+    (shell)/            moldura: menu lateral + top bar + slot do módulo
+      layout.tsx
+      <modulo>/page.tsx uma pasta por módulo
+  components/           Nav, TopBar, ThemeSwitcher, AccentProvider
+  lib/
+    modules.ts          registro dos módulos exibidos no menu
+    accents.ts          cores de acento disponíveis
+    icons.ts            fonte de ícones (subset gerado a partir dos módulos)
+    preferences*.ts     leitura e escrita dos cookies de preferência
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Adicionando um módulo
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Crie `src/app/(shell)/<modulo>/page.tsx`
+2. Registre em `src/lib/modules.ts` com nome, descrição, ícone e rota
 
-## Deploy on Vercel
+O ícone é o nome de uma ligadura do [Material Symbols Outlined](https://fonts.google.com/icons). O subset da fonte é recalculado a partir do registro.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Design
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Tokens (cores, tipografia, larguras) ficam em `src/app/globals.css`, no bloco `@theme`. Cor de acento e estado do menu são persistidos em cookie e lidos no servidor, então a primeira pintura já sai com as preferências do usuário.
