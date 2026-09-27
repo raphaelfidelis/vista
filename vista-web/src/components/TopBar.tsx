@@ -2,7 +2,8 @@
 
 import { usePathname } from 'next/navigation';
 import { useSyncExternalStore } from 'react';
-import { modules } from '@/lib/modules';
+import { Weather } from '@/components/Weather';
+import { findActiveModule } from '@/lib/modules';
 
 const MINUTE_MS = 60_000;
 
@@ -40,7 +41,7 @@ function Clock() {
   );
 
   return (
-    <span className="text-muted ml-auto text-[11px] tracking-[0.1em]">
+    <span className="text-muted text-[11px] tracking-[0.1em]">
       {minute === null ? '' : format(minute * MINUTE_MS)}
     </span>
   );
@@ -48,7 +49,7 @@ function Clock() {
 
 export function TopBar() {
   const pathname = usePathname();
-  const active = modules.find((module) => module.href === pathname);
+  const active = findActiveModule(pathname);
 
   return (
     <header className="border-line flex h-16 flex-none items-center gap-4 border-b px-6">
@@ -65,7 +66,10 @@ export function TopBar() {
           </span>
         </>
       )}
-      <Clock />
+      <div className="ml-auto flex items-center gap-4">
+        <Weather />
+        <Clock />
+      </div>
     </header>
   );
 }

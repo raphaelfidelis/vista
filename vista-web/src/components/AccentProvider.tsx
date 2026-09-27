@@ -2,9 +2,7 @@
 
 import {
   createContext,
-  useCallback,
   useContext,
-  useMemo,
   useState,
   type CSSProperties,
   type ReactNode,
@@ -40,18 +38,13 @@ export function AccentProvider({
 }: AccentProviderProps) {
   const [accent, setAccent] = useState(initialAccent);
 
-  const selectAccent = useCallback((value: string) => {
+  function selectAccent(value: string) {
     setAccent(value);
     setPreference(ACCENT_COOKIE, value);
-  }, []);
-
-  const value = useMemo(
-    () => ({ accent, selectAccent }),
-    [accent, selectAccent],
-  );
+  }
 
   return (
-    <AccentContext value={value}>
+    <AccentContext value={{ accent, selectAccent }}>
       <div className="contents" style={{ '--accent': accent } as CSSProperties}>
         {children}
       </div>

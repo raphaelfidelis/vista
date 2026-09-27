@@ -2,59 +2,36 @@
 
 Dashboard pessoal — clima, economia doméstica, notícias, onde assistir filmes e controle de gastos.
 
-Monorepo simples: uma pasta por projeto, cada um com seu próprio `package.json`, build e dependências. Não há ferramenta de orquestração — os projetos são executados individualmente.
+Monorepo simples: uma pasta por projeto, cada um com seu próprio `package.json`, build e dependências. Não há ferramenta de orquestração — cada projeto roda a partir da sua pasta.
 
 ## Estrutura
 
-```
-vista-api/    API NestJS + TypeORM + Postgres
-vista-web/    Frontend Next.js
-```
+| Projeto | Stack | Porta |
+| --- | --- | --- |
+| [`vista-api`](vista-api/) | NestJS, TypeORM, Postgres | 3000 |
+| [`vista-web`](vista-web/) | Next.js, Tailwind | 3001 |
 
 ## Requisitos
 
 - Node.js 22+
-- Postgres rodando em `localhost:5432` com um banco `vista`
+- Postgres com um banco `vista`, para o `vista-api`
 
-## vista-api
+## Rodando
+
+Cada projeto em um terminal. Instruções detalhadas nos READMEs de cada um.
 
 ```bash
 cd vista-api
 npm install
-```
-
-Crie um `.env` a partir do `.env.example` e ajuste as credenciais.
-
-Rode as migrations:
-
-```bash
-npm run migration:run
-```
-
-Suba em modo desenvolvimento:
-
-```bash
 npm run start:dev
 ```
 
-### Módulos
-
-| Módulo  | Endpoint    | Descrição                              |
-| ------- | ----------- | -------------------------------------- |
-| Feature | `GET /features` | Funcionalidades ativas do dashboard |
-
-### Organização de um módulo
-
-```
-Feature/
-  Feature.module.ts
-  Controllers/      controllers HTTP
-  Domain/           entidade + interfaces (Queries, Repositories)
-  Infra/            implementações (Models, Mappers, Queries, Repositories)
+```bash
+cd vista-web
+npm install
+npm run dev
 ```
 
-O controller chama uma *query*, nunca um repositório diretamente. As interfaces em `Domain/` são ligadas às implementações em `Infra/` por tokens de DI declarados no módulo.
+## Status
 
-## vista-web
-
-Ainda não iniciado.
+O shell do frontend (menu lateral, top bar, tema) está pronto, com um módulo de exemplo. A API tem a conexão com o banco configurada e ainda nenhum módulo — o primeiro entra junto com o primeiro módulo de conteúdo.

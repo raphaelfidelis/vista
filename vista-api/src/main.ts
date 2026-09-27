@@ -1,14 +1,15 @@
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const config = app.get(ConfigService);
 
-  app.enableCors({
-    origin: process.env.CORS_ORIGIN ?? 'http://localhost:3001',
-  });
+  // O navegador chama a API direto: é ele quem tem as coordenadas do usuário.
+  app.enableCors({ origin: config.getOrThrow<string>('CORS_ORIGIN') });
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(config.getOrThrow<string>('PORT'));
 }
 
 void bootstrap();

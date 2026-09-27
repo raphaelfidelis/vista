@@ -2,6 +2,13 @@
 .DS_Store
 Thumbs.db
 
-# Claude Code local settings
-./claude
-.claude/settings.local.json
+# Arquivos de agentes de IA — nunca versionar
+AGENTS.md
+CLAUDE.md
+.claude/
+.agents/
+.cursor/
+.cursorrules
+.windsurf/
+.aider*
+.github/copilot-instructions.md

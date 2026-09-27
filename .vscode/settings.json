@@ -1,6 +1,5 @@
 {
   "eslint.workingDirectories": [{ "mode": "auto" }],
-  "typescript.tsdk": "vista-api/node_modules/typescript/lib",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   }

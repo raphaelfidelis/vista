@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
-import { moduleIndex, modules } from '@/lib/modules';
+import { BRAND_ICON } from '@/lib/icons';
+import { isActiveModule, moduleIndex, modules } from '@/lib/modules';
 import { NAV_COOKIE } from '@/lib/preferences';
 import { setPreference } from '@/lib/preferences.client';
 
@@ -40,7 +41,7 @@ export function Nav({ defaultCollapsed }: NavProps) {
         className={`bg-accent text-on-accent flex min-h-13 cursor-pointer items-center py-3.5 ${blockLayout(collapsed)}`}
       >
         <span aria-hidden className="icon flex-none text-[26px]">
-          stacks
+          {BRAND_ICON}
         </span>
         {!collapsed && (
           <>
@@ -66,7 +67,7 @@ export function Nav({ defaultCollapsed }: NavProps) {
       </span>
 
       {modules.map((module, position) => {
-        const active = pathname === module.href;
+        const active = isActiveModule(pathname, module.href);
 
         return (
           <Link

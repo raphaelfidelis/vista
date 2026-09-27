@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { buildDataSourceOptions } from './database/TypeORM.config';
-import { FeatureModule } from './Feature/Feature.module';
+import { WeatherModule } from './Weather/Weather.module';
 
 @Module({
   imports: [
@@ -12,7 +12,7 @@ import { FeatureModule } from './Feature/Feature.module';
       useFactory: (config: ConfigService) =>
         buildDataSourceOptions(config.getOrThrow<string>('DATABASE_URL')),
     }),
-    FeatureModule,
+    WeatherModule,
   ],
 })
 export class AppModule {}
