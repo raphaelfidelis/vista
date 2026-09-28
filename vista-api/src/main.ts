@@ -9,7 +9,12 @@ async function bootstrap() {
   // O navegador chama a API direto: é ele quem tem as coordenadas do usuário.
   app.enableCors({ origin: config.getOrThrow<string>('CORS_ORIGIN') });
 
-  await app.listen(config.getOrThrow<string>('PORT'));
+  // A API não tem autenticação e guarda dado financeiro: sem host explícito o
+  // Node escuta em todas as interfaces, e qualquer aparelho da rede a alcança.
+  await app.listen(
+    config.getOrThrow<string>('PORT'),
+    config.getOrThrow<string>('HOST'),
+  );
 }
 
 void bootstrap();
