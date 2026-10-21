@@ -6,7 +6,7 @@ type ErrorStateProps = {
 
 export function ErrorState({ title, message, onRetry }: ErrorStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center gap-4">
+    <div className="flex flex-1 flex-col items-center justify-center gap-4">
       <span className="text-dim text-xs tracking-[0.24em]">{title}</span>
       <p className="text-secondary max-w-md text-center text-[11px]">
         {message}

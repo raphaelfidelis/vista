@@ -29,7 +29,7 @@ export function Nav({ defaultCollapsed }: NavProps) {
 
   return (
     <nav
-      className={`bg-panel flex flex-none flex-col gap-2 overflow-hidden py-4.5 transition-[width,padding] duration-[220ms] ease-out ${
+      className={`bg-panel hidden flex-none flex-col gap-2 md:flex overflow-hidden py-4.5 transition-[width,padding] duration-[220ms] ease-out ${
         collapsed ? 'w-nav-collapsed px-3.5' : 'w-nav px-4.5'
       }`}
     >

@@ -25,6 +25,10 @@
   /* Tema */
   --color-accent: var(--accent);
 
+  /* Alertas de orçamento: perto do limite e estourado */
+  --color-warn: #f5b23f;
+  --color-over: #ff6b5b;
+
   /* Tipografia */
   --font-sans: var(--font-space-grotesk);
   --font-mono: var(--font-jetbrains-mono);
