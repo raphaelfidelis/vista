@@ -1,5 +1,6 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { JetBrains_Mono, Space_Grotesk } from 'next/font/google';
+import { connection } from 'next/server';
 import { ICON_FONT_URL } from '@/lib/icons';
 import './globals.css';
 
@@ -13,12 +14,22 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
 });
 
+/** viewport-fit=cover: no iPhone a barra inferior desenha sob o indicador e usa o safe-area. */
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
+
 export const metadata: Metadata = {
   title: 'Vista',
   description: 'Dashboard pessoal',
 };
 
-export default function RootLayout({ children }: LayoutProps<'/'>) {
+export default async function RootLayout({ children }: LayoutProps<'/'>) {
+  // A CSP usa uma nonce por requisição: nenhuma página pode ser estática.
+  await connection();
+
   return (
     <html
       lang="pt-BR"

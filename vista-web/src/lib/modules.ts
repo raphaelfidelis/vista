@@ -7,10 +7,40 @@ export type Module = {
 
 export const modules: Module[] = [
   {
-    name: 'MOCK',
-    description: 'módulo de exemplo',
-    icon: 'widgets',
-    href: '/mock',
+    name: 'VISÃO GERAL',
+    description: 'o mês, os alertas e o que vem pela frente',
+    icon: 'space_dashboard',
+    href: '/visao-geral',
+  },
+  {
+    name: 'LANÇAMENTOS',
+    description: 'receitas, despesas e transferências',
+    icon: 'receipt_long',
+    href: '/lancamentos',
+  },
+  {
+    name: 'CARTÕES',
+    description: 'faturas, parcelas e limites',
+    icon: 'credit_card',
+    href: '/cartoes',
+  },
+  {
+    name: 'CONTAS',
+    description: 'saldos e reservas',
+    icon: 'account_balance',
+    href: '/contas',
+  },
+  {
+    name: 'ORÇAMENTO',
+    description: 'limites por categoria',
+    icon: 'donut_large',
+    href: '/orcamento',
+  },
+  {
+    name: 'METAS',
+    description: 'quanto falta para chegar lá',
+    icon: 'flag',
+    href: '/metas',
   },
 ];
 
